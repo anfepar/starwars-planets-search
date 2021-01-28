@@ -1,7 +1,7 @@
 {
-  "name": "spotify-search",
+  "name": "starwars-search",
   "version": "1.0.0",
-  "description": "A track searcher who use the spotify API",
+  "description": "A track searcher who use the starwars API",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anfepar/spofity-search.git"
+    "url": "https://github.com/anfepar/starwars-planets-search"
   },
   "keywords": [
     "React",
@@ -23,10 +23,11 @@
   "author": "anfepar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anfepar/spofity-search/issues"
+    "url": "https://github.com/anfepar/starwars-planets-search/issues"
   },
-  "homepage": "https://github.com/anfepar/spofity-search#readme",
+  "homepage": "https://github.com/anfepar/starwars-planets-search#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-eslint": "^10.0.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",

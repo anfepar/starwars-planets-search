@@ -1,7 +1,11 @@
 const initialState = {
-  tracks: [],
-  offset: 0,
-  limit: 20,
+  planets: [],
+  climates: [],
+  terrains: [],
+  limit: 10,
+  page: 1,
+  loading: false,
+  error: null,
 };
 
 export default initialState;
