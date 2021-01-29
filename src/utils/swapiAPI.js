@@ -22,5 +22,7 @@ export function getPlanets(query, limit, page) {
     method: "GET",
   })
     .then((response) => response.data.results)
-    .catch((error) => new Error(error));
+    .catch((error) => {
+      throw new Error(error);
+    });
 }

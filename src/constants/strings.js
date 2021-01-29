@@ -8,10 +8,13 @@ const STRINGS = {
     CLIMATE: "Clima",
     POPULATION: "Population",
     DIAMETER: "Diametro",
+    LOADING: "Cargando ...",
+    ERROR:
+      "😭 Noooooo, parece que algo ha salido mal, seguro es culpa del imperio 😡",
   },
-  SEARCH_BAR:{
-    BUTTON_TEXT: "Buscar"
-  }
+  SEARCH_BAR: {
+    BUTTON_TEXT: "Buscar",
+  },
 };
 
 export default STRINGS;

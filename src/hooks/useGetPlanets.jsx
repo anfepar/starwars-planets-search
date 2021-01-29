@@ -17,7 +17,10 @@ const useGetPlanets = (location) => {
           dispatch(setLoading(false));
           dispatch(setPlanets(planets));
         })
-        .catch((error) => dispatch(setError(error)));
+        .catch((error) => {
+          dispatch(setLoading(false));
+          dispatch(setError(true));
+        });
     }
   }, [location]);
 };

@@ -17,9 +17,9 @@ const Table = () => {
   return (
     <>
       {loading ? (
-        <p>Loading ...</p>
+        <p className="Loading">{STRINGS.TABLE.LOADING}</p>
       ) : error ? (
-        <p>error</p>
+        <p className="Error">{STRINGS.TABLE.ERROR}</p>
       ) : (
         <table className="Table">
           <thead>
