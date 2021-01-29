@@ -2,8 +2,8 @@ const initialState = {
   planets: [],
   climates: [],
   terrains: [],
-  limit: 10,
-  page: 1,
+  limitPerPage: 10,
+  pageNumber: 1,
   loading: false,
   error: null,
 };

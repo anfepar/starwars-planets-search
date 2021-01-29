@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getPlanetsByQuery } from "@/utils/swapiAPI";
-const useGetTracks = (location) => {
-  const [planets, setPlanets] = useState([]);
+import { setError, setLoading, setPlanets } from "@/actions";
+
+const useGetPlanets = (location) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     if (location.search) {
+      dispatch(setLoading(true));
       const query = location.search.split("q=")[1];
-      getPlanetsByQuery(query).then((planets) => {
-        setPlanets(planets);
-      });
+      getPlanetsByQuery(query)
+        .then((planets) => {
+          dispatch(setLoading(false));
+          dispatch(setPlanets(planets));
+        })
+        .catch((error) => dispatch(setError(error)));
     }
   }, [location]);
-  return planets;
 };
 
-export default useGetTracks;
+export default useGetPlanets;

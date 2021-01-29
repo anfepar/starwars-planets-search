@@ -13,7 +13,8 @@ const SearchBar = () => {
   const handleSearch = (e) => {
     if (e && e.preventDefault) e.preventDefault();
     const urlFormatQuery = encodeURIComponent(query);
-    history.push(`?q=${urlFormatQuery}`);
+    if (query) history.push(`?q=${urlFormatQuery}`);
+    else history.push("/");
   };
 
   const handleKeyDown = (e) => {

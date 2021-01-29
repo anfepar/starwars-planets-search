@@ -1,14 +1,16 @@
 import React from "react";
-import Header from "@/components/Header";
 import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+import Header from "@/components/Header";
+import Table from "@/components/Table";
 import useGetPlanets from "@/hooks/useGetPlanets";
 
 const Home = () => {
   const location = useLocation();
-  const planets = useGetPlanets(location);
+  useGetPlanets(location);
   return (
     <>
       <Header />
+      <Table />
     </>
   );
 };
