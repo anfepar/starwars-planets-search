@@ -5,6 +5,8 @@ import { createStore, compose } from "redux";
 import App from "@/routes/App";
 import reducer from "./reducers";
 import initialState from "./initialState";
+import "@/assets/styles/main.styl";
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState, composeEnhancers());

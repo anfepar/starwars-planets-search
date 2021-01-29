@@ -1,9 +1,10 @@
 import React from "react";
+import "@/assets/styles/components/TableItem.styl";
 
 const TableItem = ({ planet, fields }) => (
-  <tr>
+  <tr className="TableItem">
     {fields.map((field) => (
-      <th key={field.value}>{planet[field.value]}</th>
+      <td key={field.value}>{planet[field.value]}</td>
     ))}
   </tr>
 );

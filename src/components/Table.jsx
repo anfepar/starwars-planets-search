@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import STRINGS from "@/constants/strings";
 import TableHead from "@/components/TableHead";
 import TableItem from "@/components/TableItem";
+import "@/assets/styles/components/Table.styl";
 
 const Table = () => {
   const { loading, planets, error } = useSelector((state) => state);
@@ -20,7 +21,7 @@ const Table = () => {
       ) : error ? (
         <p>error</p>
       ) : (
-        <table>
+        <table className="Table">
           <thead>
             <TableHead fields={fields} />
           </thead>

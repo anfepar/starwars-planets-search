@@ -1,3 +1,5 @@
 import React from "react";
-const TableHeadField = ({ name }) => <th>{name}</th>;
+import "@/assets/styles/components/TableHeadField.styl";
+
+const TableHeadField = ({ name }) => <th className="TableHeadField">{name}</th>;
 export default TableHeadField;

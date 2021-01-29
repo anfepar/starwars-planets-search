@@ -9,6 +9,9 @@ const STRINGS = {
     POPULATION: "Population",
     DIAMETER: "Diametro",
   },
+  SEARCH_BAR:{
+    BUTTON_TEXT: "Buscar"
+  }
 };
 
 export default STRINGS;
