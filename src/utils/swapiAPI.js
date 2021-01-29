@@ -2,8 +2,23 @@ import axios from "axios";
 
 const API_URL = "https://swapi.dev/api";
 
-export function getPlanetsByQuery(query) {
-  return axios(`${API_URL}/planets/?search=${query}`, {
+export function getPlanets(query, limit, page) {
+  let planetsEndpoint = `${API_URL}/planets`;
+  query = query ? `search=${query}` : null;
+  limit = limit ? `limit=${limit}` : null;
+  page = page ? `page=${page}` : null;
+
+  const parameters = [query, limit, page].filter(
+    (parameter) => parameter !== null
+  );
+
+  const urlParameter = parameters.join("&");
+
+  if (query || limit || page) {
+    planetsEndpoint = `${planetsEndpoint}/?${urlParameter}`;
+  }
+
+  return axios(`${planetsEndpoint}`, {
     method: "GET",
   })
     .then((response) => response.data.results)

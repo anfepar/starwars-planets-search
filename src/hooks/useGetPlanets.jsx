@@ -1,15 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getPlanetsByQuery } from "@/utils/swapiAPI";
+import { useSelector } from "react-redux";
+import { getPlanets } from "@/utils/swapiAPI";
 import { setError, setLoading, setPlanets } from "@/actions";
 
 const useGetPlanets = (location) => {
   const dispatch = useDispatch();
+  const { limitPerPage, pageNumber } = useSelector((state) => state);
+
   useEffect(() => {
-    if (location.search) {
+    {
       dispatch(setLoading(true));
-      const query = location.search.split("q=")[1];
-      getPlanetsByQuery(query)
+      const query = location.search ? location.search.split("q=")[1] : null;
+      getPlanets(query, limitPerPage, pageNumber)
         .then((planets) => {
           dispatch(setLoading(false));
           dispatch(setPlanets(planets));
