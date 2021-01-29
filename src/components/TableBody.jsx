@@ -5,7 +5,7 @@ const TableHead = ({ fields }) => {
   <tbody>
     <tr>
       {fields.map((field) => {
-        <TableHeadField name={field.name} />;
+        <TableItem name={field.name} />;
       })}
     </tr>
   </tbody>;

@@ -11,6 +11,8 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@/__mocks__": path.resolve(__dirname, "./src/__mocks__/"),
+      "@/__test__": path.resolve(__dirname, "./src/__test__/"),
       "@/actions": path.resolve(__dirname, "./src/actions/"),
       "@/assets": path.resolve(__dirname, "./src/assets/"),
       "@/components": path.resolve(__dirname, "./src/components/"),
