@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A track searcher who use the starwars API",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development"
+    "start": "webpack-dev-server --open --mode development",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -56,10 +57,22 @@
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
+    "react-test-render": "^1.1.2",
     "sass-loader": "^7.1.0",
     "stylus-loader": "^4.3.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__test__/setupTest.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|png|gif)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(styl|css)$": "<rootDir>/src/__mocks__/styleMock.js",
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }
