@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A track searcher who use the starwars API",
   "scripts": {
-    "build": "webpack-cli --config webpack.config.js",
+    "build": "ENVIRONMENT=production webpack-cli --config webpack.config.js",
     "start": "node src/server",
     "dev": "nodemon src/server/index",
     "test": "jest",
