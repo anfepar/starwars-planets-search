@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://swapi.dev/api";
+export const API_URL = "https://swapi.dev/api";
 
 export function getPlanets(query, limit, page) {
   let planetsEndpoint = `${API_URL}/planets`;
