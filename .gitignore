@@ -76,3 +76,5 @@ yarn-error.log
 dist/
 
 test/cypress/videos
+
+src/server/public

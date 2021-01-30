@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import webpack from "webpack";
 import React from "react";
+import helmet from "helmet";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -10,6 +11,7 @@ import { renderRoutes } from "react-router-config";
 import reducer from "../frontend/reducers";
 import initialState from "../frontend/initialState";
 import serverRoutes from "../frontend/routes/serverRoutes";
+import { API_URL } from "../frontend/utils/swapiAPI";
 
 dotenv.config();
 
@@ -28,6 +30,23 @@ if (ENVIRONMENT === "development") {
   };
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(express.static(`${__dirname}/public`));
+  app.use(helmet());
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        "default-src": ["'self'"],
+        "script-src": [
+          "'self'",
+          "'sha256-IRRlnGRjBvhy3JX5EyofVm41Q0VVfi1/T4YKIT/qlSc='",
+        ],
+        "connect-src": ["'self'", `${API_URL}/`],
+      },
+    })
+  );
+  app.use(helmet.permittedCrossDomainPolicies());
+  app.disable("x-powered-by");
 }
 
 const setResponse = (html, preloadedState) => {
