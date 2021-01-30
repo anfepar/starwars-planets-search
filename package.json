@@ -5,7 +5,7 @@
   "scripts": {
     "build": "ENVIRONMENT=production webpack-cli --config webpack.config.js",
     "start": "node src/server",
-    "dev": "nodemon src/server/index",
+    "dev": "ENVIRONMENT=development   nodemon src/server/index",
     "test": "jest",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open --project ./test",
