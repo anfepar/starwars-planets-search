@@ -20,19 +20,6 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    alias: {
-      "@/__mocks__": path.resolve(__dirname, "./src/frontend/__mocks__/"),
-      "@/__test__": path.resolve(__dirname, "./src/frontend/__test__/"),
-      "@/actions": path.resolve(__dirname, "./src/frontend/actions/"),
-      "@/assets": path.resolve(__dirname, "./src/frontend/assets/"),
-      "@/components": path.resolve(__dirname, "./src/frontend/components/"),
-      "@/constants": path.resolve(__dirname, "./src/frontend/constants/"),
-      "@/containers": path.resolve(__dirname, "./src/frontend/containers/"),
-      "@/hooks": path.resolve(__dirname, "./src/frontend/hooks/"),
-      "@/reducers": path.resolve(__dirname, "./src/frontend/reducers/"),
-      "@/routes": path.resolve(__dirname, "./src/frontend/routes/"),
-      "@/utils": path.resolve(__dirname, "./src/frontend/utils/"),
-    },
     extensions: [".js", ".jsx"],
   },
   module: {

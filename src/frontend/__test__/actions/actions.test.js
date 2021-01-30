@@ -1,6 +1,6 @@
-import { setPlanets, setLoading, setError } from "@/actions";
-import PlanetMock from "@/__mocks__/PlanetMock";
-import ACTION_TYPES from "@/constants/actionTypes";
+import { setPlanets, setLoading, setError } from "../../actions";
+import PlanetMock from "../../__mocks__/PlanetMock";
+import ACTION_TYPES from "../../constants/actionTypes";
 
 describe("Actions", () => {
   test("setPlanets Action", () => {

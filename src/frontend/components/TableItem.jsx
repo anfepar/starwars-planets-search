@@ -1,5 +1,5 @@
 import React from "react";
-import "@/assets/styles/components/TableItem.styl";
+import "../assets/styles/components/TableItem.styl";
 
 const TableItem = ({ planet, fields }) => (
   <tr className="TableItem">

@@ -1,6 +1,6 @@
-import reducer from "@/reducers";
-import PlanetMock from "@/__mocks__/PlanetMock";
-import ACTION_TYPES from "@/constants/actionTypes";
+import reducer from "../../reducers";
+import PlanetMock from "../../__mocks__/PlanetMock";
+import ACTION_TYPES from "../../constants/actionTypes";
 
 describe("Reducers", () => {
   test("Return initial state", () => {

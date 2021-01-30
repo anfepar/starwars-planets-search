@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import TableHeadField from "@/components/TableHeadField";
+import TableHeadField from "../../components/TableHeadField";
 
 describe("<TableHeadField/>", () => {
   const name = "Name";

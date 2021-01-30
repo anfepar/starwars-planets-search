@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getPlanets } from "@/utils/swapiAPI";
-import { setError, setLoading, setPlanets } from "@/actions";
+import { getPlanets } from "../utils/swapiAPI";
+import { setError, setLoading, setPlanets } from "../actions";
 
 const useGetPlanets = (location) => {
   const dispatch = useDispatch();

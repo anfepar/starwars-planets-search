@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import STRINGS from "@/constants/strings";
-import TableHead from "@/components/TableHead";
-import TableItem from "@/components/TableItem";
-import "@/assets/styles/components/Table.styl";
+import STRINGS from "../constants/strings";
+import TableHead from "../components/TableHead";
+import TableItem from "../components/TableItem";
+import "../assets/styles/components/Table.styl";
 
 const Table = () => {
   const { loading, planets, error } = useSelector((state) => state);

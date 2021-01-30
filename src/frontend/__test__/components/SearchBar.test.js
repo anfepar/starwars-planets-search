@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "../../components/SearchBar";
 import { MemoryRouter } from "react-router-dom";
 
 const mockHistoryPush = jest.fn();

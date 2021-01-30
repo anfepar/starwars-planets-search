@@ -44,12 +44,16 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "express": "^4.17.1",
+    "history": "^5.0.0",
+    "ignore-styles": "^5.0.1",
     "jest-mock-axios": "^4.2.1",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.2.2",
+    "react-router": "^5.2.0",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.5",
     "stylus": "^0.54.8"
@@ -88,8 +92,7 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|png|gif)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
-      "\\.(styl|css)$": "<rootDir>/src/frontend/__mocks__/styleMock.js",
-      "^@/(.*)$": "<rootDir>/src/frontend/$1"
+      "\\.(styl|css)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.js$"
   }

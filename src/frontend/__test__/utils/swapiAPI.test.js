@@ -1,4 +1,4 @@
-import { getPlanets, API_URL } from "@/utils/swapiAPI";
+import { getPlanets, API_URL } from "../../utils/swapiAPI";
 import mockAxios from "jest-mock-axios";
 
 describe("Fetch SWAPI API", () => {

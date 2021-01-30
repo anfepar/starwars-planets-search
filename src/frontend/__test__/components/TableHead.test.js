@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import TableHead from "@/components/TableHead";
+import TableHead from "../../components/TableHead";
 
 describe("<TableHead/>", () => {
   const fields = [{ name: "Name", value: "name" }];

@@ -1,8 +1,8 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import Table from "@/components/Table";
-import ProviderMock from "@/__mocks__/ProviderMock";
-import PlanetMock from "@/__mocks__/PlanetMock";
+import Table from "../../components/Table";
+import ProviderMock from "../../__mocks__/ProviderMock";
+import PlanetMock from "../../__mocks__/PlanetMock";
 import * as redux from "react-redux";
 
 describe("<Table/>", () => {

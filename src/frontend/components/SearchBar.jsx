@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import STRINGS from "../constants/strings";
-import "@/assets/styles/components/SearchBar.styl";
+import "../assets/styles/components/SearchBar.styl";
 
 const SearchBar = () => {
   const [query, setQuery] = useState();

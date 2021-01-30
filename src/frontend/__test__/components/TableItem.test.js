@@ -1,7 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import TableItem from "@/components/TableItem";
-import PlanetMock from "@/__mocks__/PlanetMock";
+import TableItem from "../../components/TableItem";
+import PlanetMock from "../../__mocks__/PlanetMock";
 
 describe("<TableItem/>", () => {
   const fields = [{ name: "Name", value: "name" }];
