@@ -52,6 +52,12 @@ const setResponse = (html, preloadedState) => {
     </head>
     <body>
       <div id="root">${html}</div>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+          /</g,
+          "\\u003c"
+        )}
+      </script>
       <script src="${mainBuild}" type="text/javascript"></script>
     </body>
   </html>
@@ -71,7 +77,7 @@ const renderApp = (req, res) => {
   res.send(setResponse(html, preloadedState));
 };
 
-app.get("*",renderApp );
+app.get("*", renderApp);
 
 app.listen(PORT, (err) => {
   if (err) console.log(err);
