@@ -34,6 +34,7 @@
   "homepage": "https://github.com/anfepar/starwars-planets-search#readme",
   "dependencies": {
     "@babel/register": "^7.12.10",
+    "asset-require-hook": "^1.2.0",
     "axios": "^0.21.1",
     "babel-eslint": "^10.0.2",
     "dotenv": "^8.2.0",
