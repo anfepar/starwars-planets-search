@@ -12,6 +12,7 @@ import reducer from "../frontend/reducers";
 import initialState from "../frontend/initialState";
 import serverRoutes from "../frontend/routes/serverRoutes";
 import { API_URL } from "../frontend/utils/swapiAPI";
+import getManifest from "./getManifest";
 
 dotenv.config();
 
@@ -31,6 +32,10 @@ if (ENVIRONMENT === "development") {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use((req, res, next) => {
+    if (!req.hashManifest) req.hashManifest = getManifest();
+    next();
+  });
   app.use(express.static(`${__dirname}/public`));
   app.use(helmet());
   app.use(
@@ -49,9 +54,9 @@ if (ENVIRONMENT === "development") {
   app.disable("x-powered-by");
 }
 
-const setResponse = (html, preloadedState) => {
-  const mainStyles = "assets/app.css";
-  const mainBuild = "assets/app.js";
+const setResponse = (html, preloadedState, manifest) => {
+  const mainStyles = manifest ? manifest["main.css"] : "assets/app.css";
+  const mainBuild = manifest ? manifest["main.js"] : "assets/app.js";
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -93,7 +98,7 @@ const renderApp = (req, res) => {
       </StaticRouter>
     </Provider>
   );
-  res.send(setResponse(html, preloadedState));
+  res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
 app.get("*", renderApp);
