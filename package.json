@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development",
+    "dev":"nodemon src/server/index",
     "test": "jest",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open --project ./test",
@@ -32,15 +33,19 @@
   },
   "homepage": "https://github.com/anfepar/starwars-planets-search#readme",
   "dependencies": {
+    "@babel/register": "^7.12.10",
     "axios": "^0.21.1",
     "babel-eslint": "^10.0.2",
+    "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
+    "express": "^4.17.1",
     "jest-mock-axios": "^4.2.1",
+    "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -74,12 +79,13 @@
   "jest": {
     "verbose": true,
     "setupFilesAfterEnv": [
-      "<rootDir>/src/__test__/setupTest.js"
+      "<rootDir>/src/frontend/__test__/setupTest.js"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|png|gif)$": "<rootDir>/src/__mocks__/fileMock.js",
-      "\\.(styl|css)$": "<rootDir>/src/__mocks__/styleMock.js",
-      "^@/(.*)$": "<rootDir>/src/$1"
-    }
+      "\\.(jpg|png|gif)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
+      "\\.(styl|css)$": "<rootDir>/src/frontend/__mocks__/styleMock.js",
+      "^@/(.*)$": "<rootDir>/src/frontend/$1"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.js$"
   }
 }
