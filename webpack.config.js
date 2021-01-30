@@ -1,9 +1,20 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+require("dotenv").config();
+const isDevMode = process.env.ENVIRONMENT === 'development';
+const entry = ['./src/frontend/index.js'];
+if (isDevMode) {
+  entry.push(
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true',
+  );
+}
+
 module.exports = {
-  entry: "./src/frontend/index.js",
+  entry,
+  mode: process.env.ENVIRONMENT,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -69,6 +80,7 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
