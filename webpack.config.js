@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 require("dotenv").config();
 
 const isDevMode = process.env.ENVIRONMENT === "development";
@@ -28,6 +29,26 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: "async",
+      cacheGroups: {
+        vendors: {
+          name: "vendors",
+          chunks: "all",
+          reuseExistingChunk: true,
+          priority: 1,
+          filename: isDevMode
+            ? "assets/vendor.js"
+            : "assets/vendor-[contenthash].js",
+          enforce: true,
+          test(module) {
+            const name = module.nameForCondition && module.nameForCondition();
+            return (chunk) =>
+              chunk.name !== "vendors" && /[\\/]node_modules[\\/]/.test(name);
+          },
+        },
+      },
+    },
   },
   module: {
     rules: [
@@ -84,5 +105,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: isDevMode ? "assets/app.css" : "assets/app-[hash].css",
     }),
+    isDevMode
+      ? () => {}
+      : new CleanWebpackPlugin({
+          cleanOnceBeforeBuildPatterns: path.resolve(
+            __dirname,
+            "src/server/public"
+          ),
+        }),
   ],
 };
