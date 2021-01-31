@@ -1,34 +1,39 @@
 import React from "react";
 import FILTER_TYPES from "../constants/filterTypes";
 import FilterItem from "../components/FilterItem";
+import {
+  getAttributeValues,
+  getMinOfAttribute,
+  getMaxOfAttribute,
+} from "../utils/jsonUtilities";
 
-const Filter = () => {
+const Filter = ({ planets }) => {
   const filters = [
     {
       name: "Terreno",
       value: "terrain",
       type: FILTER_TYPES.SELECT,
-      data: ["desert", "grasslands"],
+      data: getAttributeValues(planets, "terrain", ","),
     },
     {
       name: "Clima",
       value: "climate",
       type: FILTER_TYPES.SELECT,
-      data: ["tempreature", "arid"],
+      data: getAttributeValues(planets, "climate", ","),
     },
     {
       name: "Población",
       value: "population",
       type: FILTER_TYPES.NUMBER_RANGE,
-      min: 50,
-      max: 100,
+      min: getMinOfAttribute(planets, "population"),
+      max: getMaxOfAttribute(planets, "population"),
     },
     {
       name: "Diametro",
       value: "diameter",
       type: FILTER_TYPES.NUMBER_RANGE,
-      min: 50,
-      max: 100,
+      min: getMinOfAttribute(planets, "diameter"),
+      max: getMaxOfAttribute(planets, "diameter"),
     },
   ];
   return (

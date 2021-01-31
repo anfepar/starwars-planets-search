@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import STRINGS from "../constants/strings";
 import TableHead from "../components/TableHead";
 import TableItem from "../components/TableItem";
+import Filter from "../components/Filter";
 import "../assets/styles/components/Table.styl";
 
 const Table = () => {
@@ -21,17 +22,24 @@ const Table = () => {
       ) : error ? (
         <p className="Error">{STRINGS.TABLE.ERROR}</p>
       ) : (
-        <table className="Table">
-          <thead>
-            <TableHead fields={fields} />
-          </thead>
-          <tbody>
-            {planets &&
-              planets.map((planet) => (
-                <TableItem key={planet.name} planet={planet} fields={fields} />
-              ))}
-          </tbody>
-        </table>
+        <>
+          <Filter planets={planets} />
+          <table className="Table">
+            <thead>
+              <TableHead fields={fields} />
+            </thead>
+            <tbody>
+              {planets &&
+                planets.map((planet) => (
+                  <TableItem
+                    key={planet.name}
+                    planet={planet}
+                    fields={fields}
+                  />
+                ))}
+            </tbody>
+          </table>
+        </>
       )}
     </>
   );
