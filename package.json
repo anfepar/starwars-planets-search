@@ -38,6 +38,10 @@
   "homepage": "https://github.com/anfepar/starwars-planets-search#readme",
   "dependencies": {
     "@babel/register": "^7.12.10",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.21.1",
     "babel-eslint": "^10.0.2",
@@ -66,11 +70,7 @@
     "webpack-manifest-plugin": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.5.4",
-    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^7.1.2",
