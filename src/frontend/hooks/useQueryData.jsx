@@ -44,6 +44,7 @@ const useQueryData = (location) => {
         }
         dispatch(setFilter(resultParamsObj));
       } else {
+        dispatch(setFilter({}));
         queryApi();
       }
     }

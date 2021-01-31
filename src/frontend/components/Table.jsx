@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import STRINGS from "../constants/strings";
 import TableHead from "../components/TableHead";
 import TableItem from "../components/TableItem";
 import Filter from "../components/Filter";
+import useFilterData from "../hooks/useFilterData";
 import "../assets/styles/components/Table.styl";
 
 const Table = () => {
@@ -15,6 +16,8 @@ const Table = () => {
     { name: STRINGS.TABLE.POPULATION, value: "population" },
     { name: STRINGS.TABLE.DIAMETER, value: "diameter" },
   ];
+  const data = useFilterData();
+  
   return (
     <>
       {loading ? (
@@ -29,8 +32,8 @@ const Table = () => {
               <TableHead fields={fields} />
             </thead>
             <tbody>
-              {planets &&
-                planets.map((planet) => (
+              {data &&
+                data.map((planet) => (
                   <TableItem
                     key={planet.name}
                     planet={planet}

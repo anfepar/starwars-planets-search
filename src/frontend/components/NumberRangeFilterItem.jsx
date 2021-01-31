@@ -7,11 +7,18 @@ const NumberRangeFilterItem = ({
   max,
   defaultValue,
   onChange,
+  reset,
 }) => {
-
+  const [selectedValue, setSelectedValue] = useState(defaultValue);
   const handleChangeSelection = (e) => {
+    setSelectedValue(e.target.value);
     onChange(e.target.value);
   };
+
+  useEffect(() => {
+    if (reset) setSelectedValue(undefined);
+  }, [reset]);
+
   return (
     <>
       <label htmlFor={value}>{name}</label>
@@ -20,10 +27,10 @@ const NumberRangeFilterItem = ({
         type="range"
         min={min}
         max={max}
-        value={defaultValue}
+        value={selectedValue}
         onChange={handleChangeSelection}
       />
-      <output htmlFor="range">{}</output>
+      <output htmlFor="range">{selectedValue}</output>
     </>
   );
 };

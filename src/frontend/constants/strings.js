@@ -18,6 +18,7 @@ const STRINGS = {
   FILTER: {
     APPLY_BUTTON: "Aplicar",
     CLEAR_BUTTON: "Limpiar",
+    DEFAULT_SELECT: "Selecciona",
   },
 };
 

@@ -1,63 +1,37 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import FILTER_TYPES from "../constants/filterTypes";
+import { useSelector } from "react-redux";
 import FilterItem from "../components/FilterItem";
 import { searchToJson, jsonToSearch } from "../utils/urlUtilities";
-import {
-  getAttributeValues,
-  getMinOfAttribute,
-  getMaxOfAttribute,
-} from "../utils/jsonUtilities";
 import STRINGS from "../constants/strings";
+import FILTERS from "../constants/filters";
 
 const Filter = ({ planets }) => {
-  const filters = [
-    {
-      name: "Terreno",
-      value: "terrain",
-      type: FILTER_TYPES.SELECT,
-      data: getAttributeValues(planets, "terrain", ","),
-    },
-    {
-      name: "Clima",
-      value: "climate",
-      type: FILTER_TYPES.SELECT,
-      data: getAttributeValues(planets, "climate", ","),
-    },
-    {
-      name: "Población",
-      value: "population",
-      type: FILTER_TYPES.NUMBER_RANGE,
-      min: getMinOfAttribute(planets, "population"),
-      max: getMaxOfAttribute(planets, "population"),
-    },
-    {
-      name: "Diametro",
-      value: "diameter",
-      type: FILTER_TYPES.NUMBER_RANGE,
-      min: getMinOfAttribute(planets, "diameter"),
-      max: getMaxOfAttribute(planets, "diameter"),
-    },
-  ];
-
+  const { filter } = useSelector((state) => state);
+  const filters = FILTERS(planets);
   let history = useHistory();
   const [filterValues, setFilterValues] = useState({});
+  const [filtersReset, setFiltersReset] = useState(false);
 
   const handleFilterChange = (filterValue) => {
-    let newValue = encodeURIComponent(filterValue.value);
-    setFilterValues({ ...filterValues, [filterValue.name]: newValue });
+    const newValue = filterValue.value;
+    const newFilter = { [filterValue.name]: newValue };
+    applyFilter(newFilter);
+    setFilterValues({ ...filterValues, ...newFilter });
+    if (filtersReset) setFiltersReset(false);
   };
 
-  const handleSumbitFilter = (e) => {
-    e.preventDefault();
+  const applyFilter = (newFilter) => {
     const currentLocation = history.location;
     if (currentLocation) {
       const currentSearchParams = currentLocation.search
         ? searchToJson(currentLocation.search)
         : {};
+
       const resultPath = jsonToSearch({
         ...currentSearchParams,
         ...filterValues,
+        ...newFilter,
       });
       history.push(resultPath);
     }
@@ -77,20 +51,20 @@ const Filter = ({ planets }) => {
       setFilterValues({});
       history.push(resultPath);
     }
+    setFiltersReset(true);
   };
 
   return (
     <form>
-      {filters.map((filter) => (
+      {filters.map((filterObj) => (
         <FilterItem
           onChange={handleFilterChange}
-          key={filter.value}
-          filter={filter}
+          key={filterObj.value}
+          filter={filterObj}
+          defaultValue={filter[filterObj.value]}
+          reset={filtersReset}
         />
       ))}
-      <button type="submit" onClick={handleSumbitFilter}>
-        {STRINGS.FILTER.APPLY_BUTTON}
-      </button>
       <button type="reset" onClick={handleResetFilter}>
         {STRINGS.FILTER.CLEAR_BUTTON}
       </button>
