@@ -1,22 +1,54 @@
 const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+require("dotenv").config();
+
+const isDevMode = process.env.ENVIRONMENT === "development";
+const entry = ["./src/frontend/index.js"];
+if (isDevMode) {
+  entry.push(
+    "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true"
+  );
+}
 
 module.exports = {
-  entry: "./src/index.js",
+  entry,
+  mode: process.env.ENVIRONMENT,
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "src/server/public"),
+    filename: isDevMode ? "assets/app.js" : "assets/app-[hash].js",
     publicPath: "/",
   },
   resolve: {
-    alias: {
-      "@/containers": path.resolve(__dirname, "./src/containers/"),
-      "@/components": path.resolve(__dirname, "./src/components/"),
-      "@/assets": path.resolve(__dirname, "./src/assets/"),
-      "@/routes": path.resolve(__dirname, "./src/routes/"),
-    },
     extensions: [".js", ".jsx"],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: "async",
+      cacheGroups: {
+        vendors: {
+          name: "vendors",
+          chunks: "all",
+          reuseExistingChunk: true,
+          priority: 1,
+          filename: isDevMode
+            ? "assets/vendor.js"
+            : "assets/vendor-[contenthash].js",
+          enforce: true,
+          test(module) {
+            const name = module.nameForCondition && module.nameForCondition();
+            return (chunk) =>
+              chunk.name !== "vendors" && /[\\/]node_modules[\\/]/.test(name);
+          },
+        },
+      },
+    },
   },
   module: {
     rules: [
@@ -62,12 +94,24 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./public/index.html",
-      filename: "./index.html",
-    }),
+    isDevMode ? new webpack.HotModuleReplacementPlugin() : () => {},
+    isDevMode
+      ? () => {}
+      : new CompressionWebpackPlugin({
+          test: /\.js$|\.css$/,
+          filename: "[path][base].gz",
+        }),
+    isDevMode ? () => {} : new WebpackManifestPlugin(),
     new MiniCssExtractPlugin({
-      filename: "assets/[name].css",
+      filename: isDevMode ? "assets/app.css" : "assets/app-[hash].css",
     }),
+    isDevMode
+      ? () => {}
+      : new CleanWebpackPlugin({
+          cleanOnceBeforeBuildPatterns: path.resolve(
+            __dirname,
+            "src/server/public"
+          ),
+        }),
   ],
 };
