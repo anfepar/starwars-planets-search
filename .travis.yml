@@ -3,9 +3,16 @@ cache:
   directories:
     - ~/.npm
 node_js:
-  - '12'
+  - "12"
 git:
   depth: 3
 script:
   - yarn test
   - yarn build
+deploy:
+  provider: heroku
+  api_key:
+    secure: $API_KEY
+  app: starwars-planets-searcher
+  on:
+    branch: master
