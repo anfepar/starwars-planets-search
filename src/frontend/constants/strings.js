@@ -15,6 +15,10 @@ const STRINGS = {
   SEARCH_BAR: {
     BUTTON_TEXT: "Buscar",
   },
+  FILTER: {
+    APPLY_BUTTON: "Aplicar",
+    CLEAR_BUTTON: "Limpiar",
+  },
 };
 
 export default STRINGS;

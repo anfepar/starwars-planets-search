@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const SelectFilterItem = ({ value, name, data }) => {
+const SelectFilterItem = ({ value, name, data, onChange }) => {
+  const handleChangeSelection = (e) => {
+    onChange(e.target.value);
+  };
+
   return (
     <>
       <label htmlFor={value}>{name}</label>
-      <select name={name} id={value}>
+      <select onChange={handleChangeSelection} name={name} id={value}>
         {data &&
           data.map((option) => (
             <option key={option} value={option}>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import FILTER_TYPES from "../constants/filterTypes";
 import FilterItem from "../components/FilterItem";
 import {
@@ -6,6 +7,7 @@ import {
   getMinOfAttribute,
   getMaxOfAttribute,
 } from "../utils/jsonUtilities";
+import STRINGS from "../constants/strings";
 
 const Filter = ({ planets }) => {
   const filters = [
@@ -36,12 +38,56 @@ const Filter = ({ planets }) => {
       max: getMaxOfAttribute(planets, "diameter"),
     },
   ];
+
+  let history = useHistory();
+  const [filterValues, setFilterValues] = useState({});
+
+  const handleFilterChange = (filterValue) => {
+    let newValue = encodeURIComponent(filterValue.value);
+    setFilterValues({ ...filterValues, [filterValue.name]: newValue });
+  };
+
+  const handleSumbitFilter = (e) => {
+    e.preventDefault();
+    const currentLocation = history.location;
+    if (currentLocation) {
+      let resultPath = currentLocation.search
+        ? `${currentLocation.search}&`
+        : "?";
+      const stringFilterValues = JSON.stringify(filterValues);
+      if (stringFilterValues) {
+        const urlEncodeFilters = stringFilterValues
+          .replace(/\{/g, "")
+          .replace(/\}/g, "")
+          .replace(/\"/g, "")
+          .replace(/,/g, "&")
+          .replace(/:/g, "=");
+        resultPath = resultPath + urlEncodeFilters;
+        history.push(resultPath);
+      }
+    }
+  };
+
+  const handleResetFilter = () => {
+    setFilterValues({});
+  };
+
   return (
-    <section>
+    <form>
       {filters.map((filter) => (
-        <FilterItem key={filter.value} filter={filter} />
+        <FilterItem
+          onChange={handleFilterChange}
+          key={filter.value}
+          filter={filter}
+        />
       ))}
-    </section>
+      <button type="submit" onClick={handleSumbitFilter}>
+        {STRINGS.FILTER.APPLY_BUTTON}
+      </button>
+      <button type="reset" onClick={handleResetFilter}>
+        {STRINGS.FILTER.CLEAR_BUTTON}
+      </button>
+    </form>
   );
 };
 
