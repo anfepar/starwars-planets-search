@@ -39,6 +39,7 @@
   "dependencies": {
     "@babel/register": "^7.12.10",
     "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
@@ -65,12 +66,12 @@
     "react-router": "^5.2.0",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.0.1",
+    "react-hot-loader": "^4.13.0",
     "redux": "^4.0.5",
     "stylus": "^0.54.8",
     "webpack-manifest-plugin": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^7.1.2",
@@ -82,7 +83,6 @@
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
-    "react-hot-loader": "^4.13.0",
     "react-test-render": "^1.1.2",
     "sass-loader": "^7.1.0",
     "stylus-loader": "^4.3.3",
