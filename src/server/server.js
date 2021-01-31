@@ -18,8 +18,10 @@ dotenv.config();
 
 const { ENVIRONMENT, PORT } = process.env;
 const app = express();
+let listenPort = PORT;
 
 if (ENVIRONMENT === "development") {
+  listenPort = 3000;
   const webpackConfig = require("../../webpack.config");
   const webpackDevMiddleware = require("webpack-dev-middleware");
   const webpackHotMiddleware = require("webpack-hot-middleware");
@@ -107,7 +109,7 @@ const renderApp = (req, res) => {
 
 app.get("*", renderApp);
 
-app.listen(PORT, (err) => {
+app.listen(listenPort, (err) => {
   if (err) console.log(err);
-  else console.log(`Server runing on port ${PORT} whit ${ENVIRONMENT} config`);
+  else console.log(`Server runing on port ${listenPort} whit ${ENVIRONMENT} config`);
 });

@@ -2,16 +2,20 @@
   "name": "starwars-search",
   "version": "1.0.0",
   "description": "A track searcher who use the starwars API",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "build": "ENVIRONMENT=production webpack-cli --config webpack.config.js",
     "start": "node src/server",
     "dev": "ENVIRONMENT=development   nodemon src/server/index",
-    "test": "jest",
+    "test:unit": "jest",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open --project ./test",
     "cypress:run": "cypress run --project ./test",
     "test:cypress:dev": "run-p --race start cypress:open",
-    "test:cypress": "run-p --race start cypress:run"
+    "test:cypress": "run-p --race dev cypress:run",
+    "test":"npm run test:unit && npm run test:cypress"
   },
   "repository": {
     "type": "git",
