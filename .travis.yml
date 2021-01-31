@@ -10,9 +10,11 @@ script:
   - yarn test
   - yarn build
 deploy:
+  skip_cleanup: true
+  keep-history: true
   provider: heroku
-  api_key:
-    secure: $API_KEY
+  api_key: $API_KEY
   app: starwars-planets-searcher
   on:
+    tags: true
     branch: master
