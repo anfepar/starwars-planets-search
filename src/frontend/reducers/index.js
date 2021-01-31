@@ -17,7 +17,16 @@ const reducer = (state, action) => {
         ...state,
         error: action.payload,
       };
-
+    case ACTION_TYPES.SET_LAST_QUERY:
+      return {
+        ...state,
+        lastQuery: action.payload,
+      };
+    case ACTION_TYPES.SET_FILTER:
+      return {
+        ...state,
+        filter: action.payload,
+      };
     default:
       return state;
   }

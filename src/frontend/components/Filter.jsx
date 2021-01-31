@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import FILTER_TYPES from "../constants/filterTypes";
 import FilterItem from "../components/FilterItem";
+import { searchToJson, jsonToSearch } from "../utils/urlUtilities";
 import {
   getAttributeValues,
   getMinOfAttribute,
@@ -51,25 +52,31 @@ const Filter = ({ planets }) => {
     e.preventDefault();
     const currentLocation = history.location;
     if (currentLocation) {
-      let resultPath = currentLocation.search
-        ? `${currentLocation.search}&`
-        : "?";
-      const stringFilterValues = JSON.stringify(filterValues);
-      if (stringFilterValues) {
-        const urlEncodeFilters = stringFilterValues
-          .replace(/\{/g, "")
-          .replace(/\}/g, "")
-          .replace(/\"/g, "")
-          .replace(/,/g, "&")
-          .replace(/:/g, "=");
-        resultPath = resultPath + urlEncodeFilters;
-        history.push(resultPath);
-      }
+      const currentSearchParams = currentLocation.search
+        ? searchToJson(currentLocation.search)
+        : {};
+      const resultPath = jsonToSearch({
+        ...currentSearchParams,
+        ...filterValues,
+      });
+      history.push(resultPath);
     }
   };
 
   const handleResetFilter = () => {
-    setFilterValues({});
+    const currentLocation = history.location;
+    if (currentLocation) {
+      let resultPath = "/";
+      if (currentLocation.search) {
+        let resultParamsObj = searchToJson(currentLocation.search);
+        Object.keys(resultParamsObj).forEach((key) => {
+          if (key !== "q") delete resultParamsObj[key];
+        });
+        resultPath = jsonToSearch(resultParamsObj);
+      }
+      setFilterValues({});
+      history.push(resultPath);
+    }
   };
 
   return (
