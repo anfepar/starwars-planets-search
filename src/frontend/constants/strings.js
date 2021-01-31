@@ -1,12 +1,12 @@
 const STRINGS = {
   HEADER: {
-    SEARCH_BAR_PLACEHOLDER: "Vamos a buscar un planeta",
+    SEARCH_BAR_PLACEHOLDER: "Vamos a buscar planetas",
   },
   TABLE: {
     NAME: "Nombre",
     TERRAIN: "Terreno",
     CLIMATE: "Clima",
-    POPULATION: "Population",
+    POPULATION: "Población",
     DIAMETER: "Diametro",
     LOADING: "Cargando ...",
     ERROR:
