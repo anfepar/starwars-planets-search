@@ -6,11 +6,11 @@ describe("Fetch SWAPI API", () => {
     mockAxios.reset();
   });
 
-  test("Llamar la SWAPI API y retornar datos", () => {
+  test("Call SWAPI API", () => {
     const apiUrl = `${API_URL}/planets/?search=Tatooine`;
-    getPlanets("Tatooine")
+    getPlanets("Tatooine");
     const lastReq = mockAxios.lastReqGet();
-    expect(lastReq).toBeTruthy()
+    expect(lastReq).toBeTruthy();
     expect(lastReq.config.url).toEqual(apiUrl);
   });
 });
