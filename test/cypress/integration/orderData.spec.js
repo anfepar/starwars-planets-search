@@ -1,6 +1,7 @@
 describe("Test order displayed data", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.wait(1000);
   });
 
   it("Sort data in ascending order", () => {
@@ -10,7 +11,6 @@ describe("Test order displayed data", () => {
       .should("exist");
   });
   it("Sort data in descending order", () => {
-
     cy.get(".TableHead").contains("Nombre").click({ force: true });
     cy.get(".TableHead").contains("Nombre").click({ force: true });
     cy.get("tbody > :nth-child(1) > :nth-child(1)")
