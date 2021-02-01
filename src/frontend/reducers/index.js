@@ -27,6 +27,11 @@ const reducer = (state, action) => {
         ...state,
         filter: action.payload,
       };
+    case ACTION_TYPES.SET_ORDER:
+      return {
+        ...state,
+        order: action.payload,
+      };
     default:
       return state;
   }
