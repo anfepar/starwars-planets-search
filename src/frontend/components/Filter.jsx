@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import FilterItem from "../components/FilterItem";
 import { searchToJson, jsonToSearch } from "../utils/urlUtilities";
 import STRINGS from "../constants/strings";
 import FILTERS from "../constants/filters";
 import "../assets/styles/components/Filter.styl";
 
-const Filter = ({ planets }) => {
-  const { filter } = useSelector((state) => state);
+const Filter = ({ planets, filter }) => {
   const filters = FILTERS(planets);
   let history = useHistory();
   const [filterValues, setFilterValues] = useState({});

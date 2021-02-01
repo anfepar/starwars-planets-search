@@ -8,7 +8,7 @@ import useFilterData from "../hooks/useFilterData";
 import "../assets/styles/components/Table.styl";
 
 const Table = () => {
-  const { loading, planets, error } = useSelector((state) => state);
+  const { loading, planets, error, filter } = useSelector((state) => state);
   const fields = [
     { name: STRINGS.TABLE.NAME, value: "name" },
     { name: STRINGS.TABLE.TERRAIN, value: "terrain" },
@@ -17,7 +17,7 @@ const Table = () => {
     { name: STRINGS.TABLE.DIAMETER, value: "diameter" },
   ];
   const data = useFilterData();
-  
+
   return (
     <>
       {loading ? (
@@ -26,7 +26,7 @@ const Table = () => {
         <p className="Error">{STRINGS.TABLE.ERROR}</p>
       ) : (
         <>
-          <Filter planets={planets} />
+          <Filter planets={planets} filter={filter} />
           <table className="Table">
             <thead>
               <TableHead fields={fields} />
