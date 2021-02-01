@@ -17,7 +17,7 @@ export function getAttributeValues(jsonArray, attributeName, splitBy = false) {
     return result;
   };
 
-  return jsonArray.reduce(reducer, []);
+  return jsonArray ? jsonArray.reduce(reducer, []) : null;
 }
 
 export function getMinOfAttribute(jsonArray, attributeName) {
@@ -32,6 +32,8 @@ export function getMaxOfAttribute(jsonArray, attributeName) {
 
 const getAttributeNumberValues = (jsonArray, attributeName) => {
   return jsonArray
-    .map((entry) => parseInt(entry[attributeName]))
-    .filter((value) => !isNaN(value));
+    ? jsonArray
+        .map((entry) => parseInt(entry[attributeName]))
+        .filter((value) => !isNaN(value))
+    : null;
 };

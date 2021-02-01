@@ -8,11 +8,10 @@ const useFilterData = () => {
   const [filteredData, setFilteredData] = useState([]);
   useEffect(() => {
     const filters = FILTERS(planets);
-    if (Object.keys(filter).length) {
+    if (filter && Object.keys(filter).length) {
       let filteredData = planets;
       for (const key in filter) {
         const filterObj = filters.find((filter) => filter.value === key);
-        if (filter) {
           switch (filterObj.type) {
             case FILTER_TYPES.SELECT:
               filteredData = filteredData.filter((planet) =>
@@ -29,7 +28,6 @@ const useFilterData = () => {
               });
               break;
           }
-        }
       }
       setFilteredData(filteredData);
     } else {

@@ -61,7 +61,7 @@ const Filter = ({ planets }) => {
           onChange={handleFilterChange}
           key={filterObj.value}
           filter={filterObj}
-          defaultValue={filter[filterObj.value]}
+          defaultValue={filter ? filter[filterObj.value] : undefined}
           reset={filtersReset}
         />
       ))}
