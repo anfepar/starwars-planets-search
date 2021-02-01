@@ -22,3 +22,8 @@ export const setFilter = (payload) => ({
   type: ACTION_TYPES.SET_FILTER,
   payload,
 });
+
+export const setOrder = (payload) => ({
+  type: ACTION_TYPES.SET_ORDER,
+  payload,
+});
