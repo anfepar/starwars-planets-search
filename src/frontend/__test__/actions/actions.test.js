@@ -4,6 +4,7 @@ import {
   setError,
   setLastQuery,
   setFilter,
+  setOrder,
 } from "../../actions";
 import PlanetMock from "../../__mocks__/PlanetMock";
 import ACTION_TYPES from "../../constants/actionTypes";
@@ -45,6 +46,15 @@ describe("Actions", () => {
   });
 
   test("setFilter Action", () => {
+    const payload = {};
+    const expected = {
+      type: ACTION_TYPES.SET_FILTER,
+      payload,
+    };
+    expect(setFilter(payload)).toEqual(expected);
+  });
+
+  test("setOrder Action", () => {
     const payload = {};
     const expected = {
       type: ACTION_TYPES.SET_FILTER,
