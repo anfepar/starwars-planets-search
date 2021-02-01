@@ -2,6 +2,7 @@ import reducer from "../../reducers";
 import PlanetMock from "../../__mocks__/PlanetMock";
 import FilterMock from "../../__mocks__/FilterMock";
 import ACTION_TYPES from "../../constants/actionTypes";
+import OrderMock from "../../__mocks__/OrderMock";
 
 describe("Reducers", () => {
   test("Return initial state", () => {
@@ -77,6 +78,21 @@ describe("Reducers", () => {
     };
     const expected = {
       filter: FilterMock,
+    };
+    expect(reducer(initialState, action)).toEqual(expected);
+  });
+
+  test(ACTION_TYPES.SET_ORDER, () => {
+    const initialState = {
+      order: {},
+    };
+    const payload = OrderMock;
+    const action = {
+      type: ACTION_TYPES.SET_ORDER,
+      payload,
+    };
+    const expected = {
+      order: OrderMock,
     };
     expect(reducer(initialState, action)).toEqual(expected);
   });

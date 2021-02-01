@@ -4,6 +4,7 @@ const initialState = {
   pageNumber: 1,
   lastQuery: "",
   filter: {},
+  order: {},
   loading: false,
   error: null,
 };

@@ -2,13 +2,14 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import Table from "../../components/Table";
 import ProviderMock from "../../__mocks__/ProviderMock";
+import PlanetsMock from "../../__mocks__/PlanetsMock";
 import PlanetMock from "../../__mocks__/PlanetMock";
 import * as redux from "react-redux";
 
 describe("<Table/>", () => {
   const spy = jest.spyOn(redux, "useSelector");
   beforeAll(() => {
-    spy.mockReturnValue({ planets: [PlanetMock] });
+    spy.mockReturnValue({ planets: [PlanetsMock] });
   });
   test("Table component should render", () => {
     const table = shallow(
@@ -46,5 +47,15 @@ describe("<Table/>", () => {
       </ProviderMock>
     );
     expect(table.find(".Error").exists()).toBeTruthy();
+  });
+
+  test("Should filter data", () => {
+    spy.mockReturnValue({ planets: [PlanetMock], filter: { diameter: 0 } });
+    const table = mount(
+      <ProviderMock>
+        <Table />
+      </ProviderMock>
+    );
+    expect(table.find("TableItem").exists()).toBeFalsy();
   });
 });

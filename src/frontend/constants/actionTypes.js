@@ -6,6 +6,7 @@ const ACTION_TYPES = {
   SET_ERROR: "setError",
   SET_LAST_QUERY: "setLastQuery",
   SET_FILTER: "setFilter",
+  SET_ORDER: "setOrder",
 };
 
 export default ACTION_TYPES;
