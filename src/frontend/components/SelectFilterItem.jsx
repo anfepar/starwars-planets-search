@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import STRINGS from "../constants/strings";
+import "../assets/styles/components/SelectFilterItem.styl";
 
 const SelectFilterItem = ({
   value,
@@ -24,7 +25,7 @@ const SelectFilterItem = ({
   }, [reset]);
 
   return (
-    <>
+    <div className="SelectFilterItem">
       <label htmlFor={value}>{name}</label>
       <select
         onChange={handleChangeSelection}
@@ -40,7 +41,7 @@ const SelectFilterItem = ({
             </option>
           ))}
       </select>
-    </>
+    </div>
   );
 };
 

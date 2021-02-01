@@ -5,6 +5,7 @@ import FilterItem from "../components/FilterItem";
 import { searchToJson, jsonToSearch } from "../utils/urlUtilities";
 import STRINGS from "../constants/strings";
 import FILTERS from "../constants/filters";
+import "../assets/styles/components/Filter.styl";
 
 const Filter = ({ planets }) => {
   const { filter } = useSelector((state) => state);
@@ -17,8 +18,8 @@ const Filter = ({ planets }) => {
     const newValue = filterValue.value;
     const newFilter = { [filterValue.name]: newValue };
     applyFilter(newFilter);
-    setFilterValues({ ...filterValues, ...newFilter });
     if (filtersReset) setFiltersReset(false);
+    setFilterValues({ ...filterValues, ...newFilter });
   };
 
   const applyFilter = (newFilter) => {
@@ -55,7 +56,7 @@ const Filter = ({ planets }) => {
   };
 
   return (
-    <form>
+    <form className="Filter">
       {filters.map((filterObj) => (
         <FilterItem
           onChange={handleFilterChange}
@@ -65,7 +66,7 @@ const Filter = ({ planets }) => {
           reset={filtersReset}
         />
       ))}
-      <button type="reset" onClick={handleResetFilter}>
+      <button className="Filter__button" type="reset" onClick={handleResetFilter}>
         {STRINGS.FILTER.CLEAR_BUTTON}
       </button>
     </form>

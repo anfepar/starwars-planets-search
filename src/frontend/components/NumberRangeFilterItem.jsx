@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../assets/styles/components/NumberRangeFilterItem.styl";
 
 const NumberRangeFilterItem = ({
   value,
@@ -20,18 +21,25 @@ const NumberRangeFilterItem = ({
   }, [reset]);
 
   return (
-    <>
+    <div className="NumberRangeFilterItem">
       <label htmlFor={value}>{name}</label>
-      <input
-        id={value}
-        type="range"
-        min={min}
-        max={max}
-        value={selectedValue}
-        onChange={handleChangeSelection}
-      />
-      <output htmlFor="range">{selectedValue}</output>
-    </>
+      <div className="NumberRangeFilterItem__rangeInput">
+        <input
+          id={value}
+          type="range"
+          min={min}
+          max={max}
+          value={selectedValue}
+          onChange={handleChangeSelection}
+        />
+        <output
+          className="NumberRangeFilterItem__rangeInput__output"
+          htmlFor="range"
+        >
+          {selectedValue}
+        </output>
+      </div>
+    </div>
   );
 };
 

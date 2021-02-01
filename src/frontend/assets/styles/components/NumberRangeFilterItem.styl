@@ -1,0 +1,22 @@
+.NumberRangeFilterItem
+    height: 2rem
+    display: flex
+    align-items: center
+    mixin-margin-y(1rem)
+    & label 
+        height auto
+
+        
+.NumberRangeFilterItem__rangeInput
+    display flex
+    align-items: center
+    &__output
+        margin-left: 1rem
+        color: color-secondary
+
+@media (max-width: 600px) 
+    .NumberRangeFilterItem
+        mixin-margin-y(1rem)
+    .NumberRangeFilterItem__rangeInput
+        width: 70%
+   
