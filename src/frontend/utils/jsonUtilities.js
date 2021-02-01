@@ -4,10 +4,11 @@ export function getAttributeValues(jsonArray, attributeName, splitBy = false) {
     let result = accumulator;
     if (attributeValues) {
       if (splitBy) {
-        attributeValues = attributeValues.split(splitBy);
-        if (!attributeValues.some((value) => accumulator.indexOf(value) >= 0)) {
-          result = [...result, ...attributeValues];
-        }
+        attributeValues = attributeValues.split(splitBy).forEach((value) => {
+          if (accumulator.indexOf(value) === -1) {
+            result = [...result, value];
+          }
+        });
       } else {
         if (accumulator.indexOf(attributeValues) === -1) {
           result.push(attributeValues);
