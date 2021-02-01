@@ -39,20 +39,9 @@ if (ENVIRONMENT === "development") {
     next();
   });
   app.use(express.static(`${__dirname}/public`));
-  app.use(helmet());
-  app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        "default-src": ["'self'"],
-        "script-src": [
-          "'self'",
-          "'sha256-IRRlnGRjBvhy3JX5EyofVm41Q0VVfi1/T4YKIT/qlSc='",
-          "'sha256-b0NNa8P2Qt6vxRgwJ9TKoFDFWf8g0tc81cubKxVZ2uA='"
-        ],
-        "connect-src": ["'self'", `${API_URL}/`],
-      },
-    })
-  );
+  app.use(helmet({
+    contentSecurityPolicy:false
+  }));
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable("x-powered-by");
 }
@@ -103,10 +92,12 @@ const renderApp = (req, res) => {
   );
   res.send(setResponse(html, preloadedState, req.hashManifest));
 };
-
 app.get("*", renderApp);
 
 app.listen(listenPort, (err) => {
   if (err) console.log(err);
-  else console.log(`Server runing on port ${listenPort} whit ${ENVIRONMENT} config`);
+  else
+    console.log(
+      `Server runing on port ${listenPort} whit ${ENVIRONMENT} config`
+    );
 });

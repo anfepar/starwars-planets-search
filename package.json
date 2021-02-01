@@ -15,7 +15,7 @@
     "cypress:run": "cypress run --project ./test",
     "test:cypress:dev": "run-p --race start cypress:open",
     "test:cypress": "run-p --race dev cypress:run",
-    "test":"npm run test:unit && npm run test:cypress"
+    "test": "npm run test:unit && npm run test:cypress"
   },
   "repository": {
     "type": "git",
@@ -76,6 +76,7 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^7.1.2",
+    "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^3.0.0",
     "cypress": "^6.3.0",
     "eslint-import-resolver-webpack": "^0.13.0",

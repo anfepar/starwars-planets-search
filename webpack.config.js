@@ -4,7 +4,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+
 require("dotenv").config();
 
 const isDevMode = process.env.ENVIRONMENT === "development";
@@ -112,6 +114,11 @@ module.exports = {
             __dirname,
             "src/server/public"
           ),
+        }),
+    isDevMode
+      ? () => {}
+      : new CopyPlugin({
+          patterns: [{ from: "robots.txt", to: "robots.txt" }],
         }),
   ],
 };
