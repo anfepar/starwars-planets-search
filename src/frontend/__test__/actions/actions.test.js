@@ -1,4 +1,10 @@
-import { setPlanets, setLoading, setError } from "../../actions";
+import {
+  setPlanets,
+  setLoading,
+  setError,
+  setLastQuery,
+  setFilter,
+} from "../../actions";
 import PlanetMock from "../../__mocks__/PlanetMock";
 import ACTION_TYPES from "../../constants/actionTypes";
 
@@ -27,5 +33,23 @@ describe("Actions", () => {
       payload,
     };
     expect(setError(payload)).toEqual(expected);
+  });
+
+  test("setLastQuery Action", () => {
+    const payload = "/";
+    const expected = {
+      type: ACTION_TYPES.SET_LAST_QUERY,
+      payload,
+    };
+    expect(setLastQuery(payload)).toEqual(expected);
+  });
+
+  test("setFilter Action", () => {
+    const payload = {};
+    const expected = {
+      type: ACTION_TYPES.SET_FILTER,
+      payload,
+    };
+    expect(setFilter(payload)).toEqual(expected);
   });
 });

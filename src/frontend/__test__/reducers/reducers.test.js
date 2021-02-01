@@ -1,5 +1,6 @@
 import reducer from "../../reducers";
 import PlanetMock from "../../__mocks__/PlanetMock";
+import FilterMock from "../../__mocks__/FilterMock";
 import ACTION_TYPES from "../../constants/actionTypes";
 
 describe("Reducers", () => {
@@ -46,6 +47,36 @@ describe("Reducers", () => {
     };
     const expected = {
       error: true,
+    };
+    expect(reducer(initialState, action)).toEqual(expected);
+  });
+
+  test(ACTION_TYPES.SET_LAST_QUERY, () => {
+    const initialState = {
+      lastQuery: "",
+    };
+    const payload = "/";
+    const action = {
+      type: ACTION_TYPES.SET_LAST_QUERY,
+      payload,
+    };
+    const expected = {
+      lastQuery: "/",
+    };
+    expect(reducer(initialState, action)).toEqual(expected);
+  });
+
+  test(ACTION_TYPES.SET_FILTER, () => {
+    const initialState = {
+      filter: {},
+    };
+    const payload = FilterMock;
+    const action = {
+      type: ACTION_TYPES.SET_FILTER,
+      payload,
+    };
+    const expected = {
+      filter: FilterMock,
     };
     expect(reducer(initialState, action)).toEqual(expected);
   });

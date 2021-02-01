@@ -1,11 +1,60 @@
 input 
-    border: none 
-    padding: padding
-    &:focus
-        outline: none
+  border: none
+  padding: padding
 
+  &:focus 
+    outline: none
+
+input[type=range]
+    -webkit-appearance: none
+    background-color: transparent 
+    padding: 0
+    width: inherit 
+
+
+input[type=range]::-webkit-slider-runnable-track 
+    width: 300px
+    height: 5px
+    background: color-white
+    border: none
+    border-radius: 3px
+
+
+input[type=range]::-webkit-slider-thumb 
+    -webkit-appearance: none
+    border: none
+    height: 16px
+    width: 16px
+    border-radius: 50%
+    background: color-secondary
+    margin-top: -4px
+
+
+
+input[type=range]:focus 
+    outline: none
+
+
+select 
+  background-color: color-brand
+  color: color-secondary
+  border: none 
+  min-width: 9rem
+  height: 2rem
+  border-bottom: 1px solid color-secondary
+  cursor: pointer
+  &:focus 
+    outline: none
+
+
+label
+  mixin-margin-x(1rem)
+  height: 2rem
+  width : 5rem
+  text-align: left  
+  display: inline-block
 
 @media (max-width: 600px) 
-  input  
-    padding: minipadding
+  input 
+    padding: minipadding;
 
