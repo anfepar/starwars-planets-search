@@ -47,6 +47,7 @@ if (ENVIRONMENT === "development") {
         "script-src": [
           "'self'",
           "'sha256-IRRlnGRjBvhy3JX5EyofVm41Q0VVfi1/T4YKIT/qlSc='",
+          "'sha256-b0NNa8P2Qt6vxRgwJ9TKoFDFWf8g0tc81cubKxVZ2uA='"
         ],
         "connect-src": ["'self'", `${API_URL}/`],
       },
@@ -70,10 +71,6 @@ const setResponse = (html, preloadedState, manifest) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
       <meta name="description" content="Starwars planet searcher" . />
-      <!-- <meta
-        property="og:image"
-        content=""
-      /> -->
       <meta name="og:title" content="Starwars planet Searcher" />
       <link rel="stylesheet" href="${mainStyles}" type="text/css">
       <title>Starwars planet searcher</title>
